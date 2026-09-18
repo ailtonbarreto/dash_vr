@@ -10,10 +10,7 @@
 <body style="margin: 0; overflow: hidden;">
 
 
-    <iframe id="dashboard"
-    title="Dashboard Comercial"
-    src="https://www.contato-app.online/ailton-barreto/" frameborder="0" allowFullScreen="true"
-    style="
+    <iframe id="card1" src="https://ailtonbarreto.github.io/cracha" frameborder="0" allowFullScreen="true" style="
         display:block;
         visibility:hidden;
         position:fixed;
@@ -27,34 +24,67 @@
         background:rgb(0, 0, 0);
         opacity: 0.9;
     ">
-</iframe>
+    </iframe>
 
-    <!-- CENA AR -->
+    <iframe id="card2" src="https://ailtonbarreto.github.io/cracha/func2" frameborder="0" allowFullScreen="true" style="
+        display:block;
+        visibility:hidden;
+        position:fixed;
+        border-radius: 1vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        z-index:9999;
+        background:rgb(0, 0, 0);
+        opacity: 0.9;
+    ">
+    </iframe>
+
+
     <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false">
 
-        <a-marker id="hiroMarker" type="pattern" url="qrcode.patt">
-        <!-- <a-marker id="hiroMarker" type="hiro"> -->
+        <!-- MARCADOR 1 -->
+        <a-marker id="marker1" type="pattern" url="card1.patt"></a-marker>
 
-
-        </a-marker>
+        <!-- MARCADOR 2 -->
+        <a-marker id="marker2" type="pattern" url="card2.patt"></a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
 
+    <!-- CARD 1 -->
+    <div id="card1" class="card" style="display:none;">
+        CARD 1 ATIVADO
+    </div>
+
+    <!-- CARD 2 -->
+    <div id="card2" class="card" style="display:none;">
+        CARD 2 ATIVADO
+    </div>
+
+
     <script>
-        const marker = document.getElementById("hiroMarker");
-        const dash = document.getElementById("dashboard");
+        const markers = [
+            { id: "marker1", card: "card1" },
+            { id: "marker2", card: "card2" }
+        ];
 
-        marker.addEventListener("markerFound", () => {
-            console.log("Hiro detectado!");
-            dash.style.display = "block";
-            dash.style.visibility = "visible";
+        markers.forEach(item => {
+            const marker = document.getElementById(item.id);
+            const card = document.getElementById(item.card);
+
+            marker.addEventListener("markerFound", () => {
+                card.style.display = "block";
+                card.style.visibility = "visible";
+            });
+
+            marker.addEventListener("markerLost", () => {
+                card.style.display = "none";
+            });
         });
 
-        marker.addEventListener("markerLost", () => {
-            console.log("Hiro perdido!");
-            dash.style.display = "none";
-        });
     </script>
 
 </body>
