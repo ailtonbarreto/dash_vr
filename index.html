@@ -3,79 +3,99 @@
 <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
-    <link rel="shortcut icon" href="vr-glasses.ico" type="image/x-icon">
-    <title>Dashboard VR</title>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
 
-
-    <iframe id="card1" src="https://ailtonbarreto.github.io/cracha" frameborder="0" allowFullScreen="true" style="
-        display:block;
-        visibility:hidden;
-        position:fixed;
-        border-radius: 1vw;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100vw;
-        height: 100vh;
-        z-index:9999;
-        background:rgb(0, 0, 0);
-        opacity: 0.9;
-    ">
+    <!-- DASHBOARD -->
+    <iframe id="dashboard"
+        title="Dashboard Comercial"
+        src="https://www.ailtonbarreto.com.br/projects/bim5d.html"
+        frameborder="0"
+        allowFullScreen="true"
+        style="
+            display:block;
+            visibility:hidden;
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index:9999;
+            background:rgb(1, 40, 99);
+            opacity: 0.8;
+        ">
     </iframe>
 
-    <iframe id="card2" src="https://ailtonbarreto.github.io/cracha/func2" frameborder="0" allowFullScreen="true" style="
-        display:block;
-        visibility:hidden;
-        position:fixed;
-        border-radius: 1vw;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    <!-- ÁREA DE SCAN -->
+    <div id="scan-area" style="
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100vw;
         height: 100vh;
-        z-index:9999;
-        background:rgb(0, 0, 0);
-        opacity: 0.9;
+        pointer-events: none;
+        z-index: 9998;
     ">
-    </iframe>
 
+        <!-- MÁSCARAS PRETAS AO REDOR DA JANELA -->
+        <div style="position:absolute; top:0; left:0; width:100%; height:21%; background:black;"></div>
+        <div style="position:absolute; bottom:0; left:0; width:100%; height:40%; background:black;"></div>
+        <div style="position:absolute; top:20vh; left:0; width:12%; height:40%; background:black;"></div>
+        <div style="position:absolute; top:20vh; right:0; width:10%; height:40vh; background:black;"></div>
 
+        <!-- JANELA DE SCAN (TRANSPARENTE) -->
+        <div style="
+            position: absolute;
+            top: 20vh;
+            left: 10vw;
+            width: 80vw;
+            height: 40vh;
+            background: transparent;
+            border: 4px solid rgba(3, 137, 214, 0.658);
+            border-radius: 12px;
+        ">
+
+            <!-- TEXTO -->
+            <div style="
+                position: absolute;
+                top: -60px;
+                left: 50%;
+                width: 100%;
+                transform: translateX(-50%);
+                color: white;
+                font-size: 22px;
+                text-align: center;
+            ">
+                Encaixe o marcador nessa área
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CENA AR -->
     <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false">
 
-        <!-- MARCADOR 1 -->
-        <a-marker id="marker1" type="pattern" url="card1.patt"></a-marker>
-
-        <!-- MARCADOR 2 -->
-        <a-marker id="marker2" type="pattern" url="card2.patt"></a-marker>
+        <a-marker id="hiroMarker" type="pattern" url="dashmarker.patt"
+            smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+        </a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
 
-
     <script>
-        const markers = [
-            { id: "marker1", card: "card1" },
-            { id: "marker2", card: "card2" }
-        ];
+        const marker = document.getElementById("hiroMarker");
+        const dash = document.getElementById("dashboard");
 
-        markers.forEach(item => {
-            const marker = document.getElementById(item.id);
-            const card = document.getElementById(item.card);
-
-            marker.addEventListener("markerFound", () => {
-                card.style.display = "block";
-                card.style.visibility = "visible";
-            });
-
-            marker.addEventListener("markerLost", () => {
-                card.style.display = "none";
-            });
+        marker.addEventListener("markerFound", () => {
+            dash.style.display = "block";
+            dash.style.visibility = "visible";
         });
 
-
+        marker.addEventListener("markerLost", () => {
+            dash.style.display = "none";
+        });
     </script>
 
 </body>
