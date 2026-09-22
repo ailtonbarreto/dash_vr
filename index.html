@@ -8,10 +8,18 @@
 
 <body>
 
-    <!-- DASHBOARD -->
-    <iframe id="dashboard" src="https://www.ailtonbarreto.com.br/projects/bim5d.html" style="visibility: hidden;"></iframe>
+    <div class="text-top">
+        Dashboard BIM 5D
+    </div>
 
-    <!-- ÁREA DE SCAN -->
+    <div class="text-bottom">
+        Mantenhe o Marcador na Área da Câmera
+    </div>
+
+    <!-- DASHBOARD -->
+    <iframe id="dashboard" src="https://www.ailtonbarreto.com.br/projects/bim5d.html"
+        style="visibility: hidden;"></iframe>
+
     <div id="scan-area">
 
         <div style="position:absolute; top:0; left:0; width:100%; height:21%; background:white;"></div>
@@ -19,26 +27,16 @@
         <div style="position:absolute; top:20%; left:0; width:12%; height:40%; background:white;"></div>
         <div style="position:absolute; top:20%; right:0; width:12%; height:40%; background:white;"></div>
 
-        <!-- JANELA DE SCAN (TRANSPARENTE) -->
-        <div style="
-            position: absolute;
-            top: 20vh;
-            left: 10vw;
-            width: 80vw;
-            height: 41vh;
-            background: transparent;
-            border: 4px solid rgb(8, 0, 116);
-            border-radius: 12px;
-        ">
+        <div id="window"></div>
 
-        </div>
     </div>
+
 
     <!-- CENA AR -->
     <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false">
 
-        <a-marker id="hiroMarker" type="pattern" url="dashmarker.patt"
-            smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+        <a-marker id="hiroMarker" type="pattern" url="dashmarker.patt" smooth="true" smoothCount="10"
+            smoothTolerance="0.01" smoothThreshold="5">
         </a-marker>
 
         <a-entity camera></a-entity>
