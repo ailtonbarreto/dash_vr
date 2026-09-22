@@ -3,30 +3,13 @@
 <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="margin: 0; overflow: hidden;">
+<body>
 
     <!-- DASHBOARD -->
-    <iframe id="dashboard"
-        title="Dashboard Comercial"
-        src="https://www.ailtonbarreto.com.br/projects/bim5d.html"
-        frameborder="0"
-        allowFullScreen="true"
-        style="
-            display:block;
-            visibility:hidden;
-            position:fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vh;
-            z-index:9999;
-            background:rgb(1, 40, 99);
-            opacity: 0.9;
-        ">
-    </iframe>
+    <iframe id="dashboard" src="https://www.ailtonbarreto.com.br/projects/bim5d.html" style="visibility: hidden;"></iframe>
 
     <!-- ÁREA DE SCAN -->
     <div id="scan-area" style="
@@ -41,17 +24,17 @@
 
         <!-- MÁSCARAS PRETAS AO REDOR DA JANELA -->
         <div style="position:absolute; top:0; left:0; width:100%; height:21%; background:white;"></div>
-        <div style="position:absolute; bottom:0; left:0; width:100%; height:40vh; background: white;"></div>
-        <div style="position:absolute; top:20vh; left:0; width:12%; height:40vh; background:white;"></div>
-        <div style="position:absolute; top:20vh; right:0; width:10%; height:40vh; background:white;"></div>
+        <div style="position:absolute; bottom:0; left:0; width:100%; height:40%; background: white;"></div>
+        <div style="position:absolute; top:20%; left:0; width:11%; height:40%; background:white;"></div>
+        <div style="position:absolute; top:20%; right:0; width:10%; height:40vh; background:white;"></div>
 
         <!-- JANELA DE SCAN (TRANSPARENTE) -->
         <div style="
             position: absolute;
             top: 20vh;
             left: 10vw;
-            width: 80vw;
-            height: 40vh;
+            width: 81vw;
+            height: 41vh;
             background: transparent;
             border: 4px solid rgb(8, 0, 116);
             border-radius: 12px;
